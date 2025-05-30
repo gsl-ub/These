@@ -1,0 +1,36 @@
+% Mise en forme du glossaire contenu dans glossaire_definitions.tex
+
+%\chapter*{Glossaire} % crée un chapitre non numéroté, il n’est pas ajouté automatiquement à la table des matières
+%\addcontentsline{toc}{chapter}{Glossaire} % Cette commande ajoute manuellement une ligne dans la table des matières (ToC). toc = table of contents ; chapter = niveau hiérarchique de l’entrée (ici, un chapitre) ; Glossaire = le texte à afficher dans la ToC
+
+% Glossaire et acronymes — à inclure avec \include{Liminaires/glossaire}
+
+% Affiche la liste des acronymes
+\printglossary[
+  type=\acronymtype,
+  title=Acronymes,
+  toctitle=Acronymes % Alternative : Liste des acronymes, changera le titre uniquement dans la toc (table of content)
+]
+
+% Affiche le glossaire principal
+\printglossary[
+  title=Glossaire,
+  toctitle=Glossaire % Glossaire des termes
+]
+
+% Utilisation à supprimer
+Une fois un mot ou acronyme déclaré avec \newglossaryentry ou \newacronym :
+Pour l’utiliser dans ton texte :
+\gls{nmr} → affiche NMR + explication complète la 1re fois (si configuré)
+
+\Gls{nmr} → idem, mais avec majuscule
+
+\glspl{nmr} → pluriel
+
+\acrshort{nmr} → affiche juste NMR
+
+\acrfull{nmr} → affiche acide abscissique (ABA) (forme longue + sigle)
+
+\acrlong{nmr} → juste la forme longue
+
+LaTeX se charge automatiquement d’écrire le mot complet la première fois, puis seulement l’abréviation ensuite.

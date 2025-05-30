@@ -1,14 +1,124 @@
-\documentclass[french,12pt,a4paper]{report}
-\usepackage{graphicx} % Required for inserting images
+% ============================
+% Classe du document
+% ============================
+\documentclass[a4paper,12pt]{report}        % 'report' est bien adapté aux thèses
 
-\title{These}
-\author{Guillaume Leleu}
-\date{May 2025}
+% ============================
+% Langue et encodage
+% ============================
+\usepackage[english, french]{babel}         % Gestion multilingue, langue française par défaut (dernière) : typographie, noms automatiques, utiliser \selectlanguage{english} pour basculer en anglais et \begin{otherlanguage}{french} pour des inclusions fr suivi de \end{otherlanguage} puis de \selectlanguage{english} pour reprendre une partie en anglais.
+\usepackage[utf8]{inputenc}                 % Encodage UTF-8 (utile en local)
+\usepackage[T1]{fontenc}                    % Sortie correcte des accents
+\usepackage{lmodern}                        % Police vectorielle moderne
+% \usepackage{microtype}                    % Améliore la typographie (césure, justification)
+
+% ============================
+% Mise en page
+% ============================
+\usepackage[top=1.5cm,bottom=2cm,left=2.5cm,right=2.5cm,includehead]{geometry} % Marges personnalisées
+\usepackage{setspace}                       % Pour gérer l'interligne (\onehalfspacing, etc.)
+% \usepackage{pdfpages}                     % Pour gérer l'insertion de PDF...
+% \usepackage{afterpage}                    % Pour pouvoir forcer les sauts de page proprement : \afterpage{\clearpage} force l’insertion de toutes les figures en attente juste après cette page
+% \usepackage[compact]{titlesec}            % Mise en forme des titres plus compacte
+% \usepackage[table,xcdraw]{xcolor}         % Gérer les couleurs dans le document notamment dans les tableaux
+
+% ============================
+% Mathématiques
+% ============================
+\usepackage{amsmath, amssymb, amsfonts}     % Pour les formules et symboles mathématiques
+\usepackage{siunitx}                        % Gestion des unités scientifiques (1.23 en et 1,23 fr) \SI{3.5}{mg/L} -> possibilité aussi de faire des unités personnalisées voir chatGPT au besoin
+
+% ============================
+% Images et figures
+% ============================
+\usepackage{graphicx}                       % Insertion d'images
+\usepackage{float}                          % Placement forcé avec [H]
+\usepackage[font=small,labelfont=bf,width=0.8\textwidth]{caption}   % personnaliser l’apparence des légendes (captions) des figures et tableaux
+\usepackage{subcaption}                     % Sous-figures
+% \usepackage{svg}                          % Pour inclure des fichiers SVG
+
+% ============================
+% Tableaux et couleurs
+% ============================
+\usepackage[table,xcdraw]{xcolor}           % Couleurs dans les tableaux
+% \usepackage{booktabs}                     % Tableaux élégants (\toprule, etc.)
+\usepackage{multirow}                       % Fusion de cellules dans les tableaux
+
+% ============================
+% Bibliographie
+% ============================
+\usepackage[backend=biber, style=apa,sorting=nyt, url=false, Extra=false]{biblatex} % Gestion biblio avancée
+\addbibresource{references.bib}             % Fichier de bibliographie
+% \addbibresource{biblio_manuelle.bib}      % Autre fichier possible
+%\DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily} % Restaure un comportement cohérent en français pour la bibliographie dans la mise en forme des noms de famille
+
+% ============================
+% Hyperliens et citations
+% ============================
+\usepackage{hyperref}                       % Liens cliquables
+\usepackage{csquotes}                       % Guillemets typographiques adaptés à la langue
+% \usepackage{cleveref}                     % Références intelligentes (ex: \cref{fig:truc})
+
+% ============================
+% Glossaire et acronymes
+% ============================
+\usepackage[toc,acronym]{glossaries}
+\makeglossaries
+% \renewcommand*{\glsentryfmt}[1]{#1}       % Désactiver l'insertion automatique de la définition dans le texte
+\input{0_Liminaires/glossaire_definitions}
+
+% ============================
+% Gestion des annexes
+% ============================
+\usepackage{appendix}                       % Gestion propre des annexes
+
+% ============================
+% Divers / utile en rédaction
+% ============================
+% \usepackage{todonotes}                    % Pour ajouter des commentaires visibles dans le PDF
+
+% ============================
+% Commandes personnalisées
+% ============================
+% Création de page vierge entre les sections non comptées dans le doc
+\newcommand\blankpage{%
+  \null
+  \thispagestyle{empty}%
+  \addtocounter{page}{-1}%
+  \newpage}
 
 \begin{document}
 
-\maketitle
+\pagestyle{empty}
 
-\section{Introduction}
+\include{0_Liminaires/page_garde_abstract}
+\include{0_Liminaires/citations_remerciements}
+
+\pagestyle{plain}
+\tableofcontents
+\include{0_Liminaires/glossaire}
+\include{0_Liminaires/introduction}
+\include{1_Chapitre_1_Etat_Art/chapitre_1_etat_art}
+\include{2_Chapitre_2_Mat_et_Met/chapitre_2_materiel_et_methode}
+\include{0_Liminaires/conclusion}
+
+% \setcounter{biburllcpenalty}{7000} % A utiliser selon s'il y a des soucis de retour à la ligne dans la biblio (notamment sur les liens URL).
+% \setcounter{biburlucpenalty}{8000}
+% \renewcommand*{\labelnamepunct}{\newunitpunct\par} % Remplace le séparateur entre le nom de l’auteur et la suite de la référence par un saut de ligne sinon point ou virgule : plus aéré
+% \renewbibmacro{in:}{\newline In:} % Personnalise le mot “In:” dans les références (pour les chapitres d’ouvrages, actes de congrès, etc.).
+
+\newpage
+\addcontentsline{toc}{chapter}{Bibliographie} % ajoute manuellement la Bibliographie dans la table des matières (utile si \printbibliography ne le fait pas automatiquement).
+\printbibliography % imprime ta bibliographie complète.
+
+\newpage
+\addcontentsline{toc}{chapter}{Table des figures}
+\listoffigures
+
+\newpage
+\addcontentsline{toc}{chapter}{Liste des tableaux}
+\listoftables
+
+\include{Annexes/annexes}
 
 \end{document}
