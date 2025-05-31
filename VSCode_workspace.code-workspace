@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../4_Visibilite scientifique/Articles/Review_auth/Git_review_auth"
+		}
+	],
+	"settings": {
+		"latex-workshop.view.pdf.viewer": "tab"
+	}
+}
