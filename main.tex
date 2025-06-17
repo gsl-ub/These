@@ -1,7 +1,7 @@
 % ============================
 % Classe du document
 % ============================
-\documentclass[a4paper,12pt]{report}        % 'report' est bien adapté aux thèses
+\documentclass[a4paper,12pt]{report}        % 'report' est bien adapté aux thèses mais peut être préférer 'memoir'
 
 % ============================
 % Langue et encodage
@@ -21,6 +21,7 @@
 % \usepackage{afterpage}                    % Pour pouvoir forcer les sauts de page proprement : \afterpage{\clearpage} force l’insertion de toutes les figures en attente juste après cette page
 % \usepackage[compact]{titlesec}            % Mise en forme des titres plus compacte
 % \usepackage[table,xcdraw]{xcolor}         % Gérer les couleurs dans le document notamment dans les tableaux
+% voir pour utiliser police / font perso (ex: Lato).
 
 % ============================
 % Mathématiques
@@ -47,7 +48,7 @@
 % ============================
 % Bibliographie
 % ============================
-\usepackage[backend=biber, style=apa,sorting=nyt, url=false, Extra=false]{biblatex} % Gestion biblio avancée
+\usepackage[backend=biber, style=apa,sorting=nyt, url=false]{biblatex} % Gestion biblio avancée
 \addbibresource{references.bib}             % Fichier de bibliographie
 % \addbibresource{biblio_manuelle.bib}      % Autre fichier possible
 %\DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily} % Restaure un comportement cohérent en français pour la bibliographie dans la mise en forme des noms de famille
@@ -91,7 +92,7 @@
 
 \pagestyle{empty}
 
-\include{0_Liminaires/page_garde_abstract}
+\include{0_Liminaires/page_de_garde_abstract}
 \include{0_Liminaires/citations_remerciements}
 
 \pagestyle{plain}
