@@ -8,6 +8,9 @@
 		}
 	],
 	"settings": {
-		"latex-workshop.view.pdf.viewer": "tab"
+		"latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.latex.autoBuild.onSave.enabled": false,
+    "latex-workshop.latex.autoBuild.onFileChange.enabled": false
 	}
 }
