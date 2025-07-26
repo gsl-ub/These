@@ -1,0 +1,180 @@
+% ============================
+% Classe du document
+% ============================
+\documentclass[ % 'report' est bien adapté aux thèses mais peut être préférer 'memoir' ou equivalents 'scrbook', 'scrreprt' (Koma-script)
+a4paper,
+11pt,
+twoside
+]{memoir}
+
+% ============================
+% Chargement des réglages
+% ============================
+%\input{Settings/packages.tex}               % chargement des packages utilisés
+%\input{Settings/fonts.tex}                  % utilisation de polices personnalisées
+%\input{Settings/layout.tex}                 % mise en page
+%\input{Settings/commands.tex}               % commandes personnalisées
+
+% ============================
+% Langue et encodage
+% ============================
+\usepackage[english, french]{babel}         % Gestion multilingue, langue française par défaut (dernière) : typographie, noms automatiques, utiliser \selectlanguage{english} pour basculer en anglais et \begin{otherlanguage}{french} pour des inclusions fr suivi de \end{otherlanguage} puis de \selectlanguage{english} pour reprendre une partie en anglais.
+\usepackage[utf8]{inputenc}                 % Encodage UTF-8 (utile en local)
+\usepackage[T1]{fontenc}                    % Sortie correcte des accents
+\usepackage{lmodern}                        % Police vectorielle moderne
+% \usepackage{microtype}                    % Améliore la typographie (césure, justification)
+
+% ============================
+% Mise en page
+% ============================
+\usepackage[top=1.5cm,bottom=2cm,left=2.5cm,right=2.5cm,includehead]{geometry} % Marges personnalisées
+\usepackage{setspace}                       % Pour gérer l'interligne (\onehalfspacing, etc.)
+% \usepackage{pdfpages}                     % Pour gérer l'insertion de PDF...
+% \usepackage{afterpage}                    % Pour pouvoir forcer les sauts de page proprement : \afterpage{\clearpage} force l’insertion de toutes les figures en attente juste après cette page
+% \usepackage[compact]{titlesec}            % Mise en forme des titres plus compacte
+% \usepackage[table,xcdraw]{xcolor}         % Gérer les couleurs dans le document notamment dans les tableaux
+% voir pour utiliser police / font perso (ex: Lato).
+
+% ============================
+% Mathématiques
+% ============================
+\usepackage{amsmath, amssymb, amsfonts}     % Pour les formules et symboles mathématiques
+\usepackage{siunitx}                        % Gestion des unités scientifiques (1.23 en et 1,23 fr) \SI{3.5}{mg/L} -> possibilité aussi de faire des unités personnalisées voir chatGPT au besoin
+
+% ============================
+% Images et figures
+% ============================
+\usepackage{graphicx}                       % Insertion d'images
+\usepackage{float}                          % Placement forcé avec [H]
+\usepackage[font=small,labelfont=bf,width=0.8\textwidth]{caption}   % personnaliser l’apparence des légendes (captions) des figures et tableaux
+\usepackage{subcaption}                     % Sous-figures
+% \usepackage{svg}                          % Pour inclure des fichiers SVG
+
+% ============================
+% Tableaux et couleurs
+% ============================
+\usepackage[table,xcdraw]{xcolor}           % Couleurs dans les tableaux
+% \usepackage{booktabs}                     % Tableaux élégants (\toprule, etc.)
+\usepackage{multirow}                       % Fusion de cellules dans les tableaux
+
+% ============================
+% Bibliographie
+% ============================
+\usepackage[backend=biber, style=apa,sorting=nyt, url=false]{biblatex} % Gestion biblio avancée
+\addbibresource{references.bib}             % Fichier de bibliographie
+% \addbibresource{biblio_manuelle.bib}      % Autre fichier possible -> utiliser betterbiblatex... ?
+%\DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily} % Restaure un comportement cohérent en français pour la bibliographie dans la mise en forme des noms de famille
+
+% ============================
+% Hyperliens et citations
+% ============================
+\usepackage{hyperref}                       % Liens cliquables
+\usepackage{csquotes}                       % Guillemets typographiques adaptés à la langue
+% \usepackage{cleveref}                     % Références intelligentes (ex: \cref{fig:truc})
+
+% ============================
+% Glossaire et acronymes
+% ============================
+\usepackage[toc,acronym]{glossaries}
+\makeglossaries
+% \renewcommand*{\glsentryfmt}[1]{#1}       % Désactiver l'insertion automatique de la définition dans le texte
+\input{0_Liminaires/glossaire_definitions}
+
+% ============================
+% Gestion des annexes
+% ============================
+\usepackage{appendix}                       % Gestion propre des annexes
+
+% ============================
+% Divers / utile en rédaction
+% ============================
+% \usepackage{todonotes}                    % Pour ajouter des commentaires visibles dans le PDF
+
+% ============================
+% Commandes personnalisées
+% ============================
+% Création de page vierge entre les sections non comptées dans le doc
+\newcommand\blankpage{%
+  \null
+  \thispagestyle{empty}%
+  \addtocounter{page}{-1}%
+  \newpage}
+
+\begin{document}
+
+\pagestyle{empty}
+
+\include{0_Liminaires/page_de_garde_abstract}
+\include{0_Liminaires/citations_remerciements}
+
+\pagestyle{plain}
+\tableofcontents
+\include{0_Liminaires/glossaire}
+\include{0_Liminaires/introduction}
+\include{1_Chapitre_1_Etat_Art/chapitre_1_etat_art}
+\include{2_Chapitre_2_Mat_et_Met/chapitre_2_materiel_et_methode}
+\include{0_Liminaires/conclusion}
+
+% \setcounter{biburllcpenalty}{7000} % A utiliser selon s'il y a des soucis de retour à la ligne dans la biblio (notamment sur les liens URL).
+% \setcounter{biburlucpenalty}{8000}
+% \renewcommand*{\labelnamepunct}{\newunitpunct\par} % Remplace le séparateur entre le nom de l’auteur et la suite de la référence par un saut de ligne sinon point ou virgule : plus aéré
+% \renewbibmacro{in:}{\newline In:} % Personnalise le mot “In:” dans les références (pour les chapitres d’ouvrages, actes de congrès, etc.).
+
+\newpage
+\addcontentsline{toc}{chapter}{Bibliographie} % ajoute manuellement la Bibliographie dans la table des matières (utile si \printbibliography ne le fait pas automatiquement).
+\printbibliography % imprime ta bibliographie complète.
+
+\newpage
+\addcontentsline{toc}{chapter}{Table des figures}
+\listoffigures
+
+\newpage
+\addcontentsline{toc}{chapter}{Liste des tableaux}
+\listoftables
+
+\include{Annexes/annexes}
+
+\end{document}
+
+\section{Thèse sur article, dite aussi "thèse sur travaux" :}
+
+Ce type de thèse présente les principaux résultats de la recherche sous forme d’articles publiés dans des revues scientifiques, ou sous forme d’articles acceptés pour publication, dans le domaine de recherche du doctorant.
+
+ • Le doctorant peut être l’auteur unique d’un article ou son auteur principal, ce qui signifie :
+ - qu’il précise, dans le cas d’articles co-signés, sa contribution qui doit être significative,
+ - que les articles correspondent à une contribution scientifique originale,
+
+ • Les articles qui constituent le corps du document doivent être :
+ - précédés dans le mémoire de thèse, d’une présentation substantielle,
+ - suivis d’une synthèse substantielle qui comprend une discussion générale des résultats, des conclusions et une bibliographie.
+
+Les parties nécessaires à la compréhension générale du mémoire mais qui ne peuvent pas paraître dans les journaux scientifiques doivent être fournies (techniques ou méthodes d’analyse spécifiques, données supplémentaires, etc.).
+
+\section{Redaction du manuscrit :}
+La rédaction du mémoire est l’une des formations apportées par le doctorat et constitue une part essentielle du travail de thèse.
+Le mémoire doit montrer les capacités du candidat à présenter l’objectif de son étude, faire l’état de l’art sur la question, situer son travail dans le contexte international, exposer la méthodologie, développer les différents aspects de son travail. Ses capacités à rédiger seront utiles au docteur au cours de sa vie professionnelle, qu’elle se réalise dans le milieu académique ou en entreprise.
+
+\subparagraph{Contenu :}
+
+La forme traditionnelle du mémoire est constituée de différents chapitres que le doctorant s’attachera à articuler entre eux. Il présentera une synthèse critique des résultats obtenus avant de proposer des conclusions et des perspectives.Le mémoire pourra intégrer des articles publiés ou acceptés pour publication dans des revues reconnues dans le domaine de recherche du doctorant à condition :
+• qu’il en soit l’artisan principal et qu’il précise, dans le cas d’articles co-signés, sa contribution qui doit être significative,
+• que les articles correspondent à des contributions scientifiques originales,
+• qu’ils soient précédés, dans le mémoire de thèse, d’une présentation substantielle montrant comment ils s’intègrent dans le travail de thèse,
+• que les parties nécessaires à la compréhension générale du mémoire mais qui ne peuvent pas paraître dans les journaux scientifiques soient fournies (techniques ou méthodes d’analyse spécifiques, données supplémentaires, etc.).
+
+Dans le cas où de larges passages du manuscrit seraient constitués d'articles, il est demandé un travail de rédaction d'au minimum 40 pages introduisant le sujet, présentant l'état de l'art et toute partie ne figurant pas dans les articles mais étant nécessaire à la compréhension de l’ensemble, liant les articles entre eux et concluant sur les objectifs atteints et les perspectives.
+Des publications ne sauraient, en aucun cas, représenter à elles seules la thèse elle-même.
+
+Le rôle des membres du jury sera précisé après soutenance dans la version définitive du manuscrit de thèse.
+
+\subparagraph{L’usage des langues pour la rédaction du mémoire et la soutenance de thèse :}
+
+La langue de rédaction est normalement le français.
+
+Le mémoire contient obligatoirement un résumé rédigé en français et en anglais.
+
+La langue de soutenance est normalement le français, sauf pour les étudiants non francophones, ou ceux dont le travail s'est développé dans un cadre international, auquel cas l'usage de la langue anglaise est toléré.
+La discussion pourra se dérouler en anglais si des membres du jury le souhaitent.
+Les rapporteurs et le président du jury devront rédiger leurs rapports en suivant ce qui est prévu dans la convention de thèse si elle existe, en français ou en anglais.
+
+ 

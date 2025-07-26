@@ -1,0 +1,50 @@
+% --- Langue et encodage (gérés par fontspec si LuaLaTeX/XeLaTeX) ---
+\usepackage[english, french]{babel}         % Gestion multilingue, langue française par défaut (dernière) : typographie, noms automatiques, utiliser \selectlanguage{english} pour basculer en anglais et \begin{otherlanguage}{french} pour des inclusions fr suivi de \end{otherlanguage} puis de \selectlanguage{english} pour reprendre une partie en anglais.
+\usepackage{csquotes}                       % Guillemets typographiques adaptés à la langue
+% A supprimer lorsque j'utiliserai des polices personnalisées.
+%\usepackage[utf8]{inputenc}                 % Encodage UTF-8 (utile en local)
+\usepackage[T1]{fontenc}                    % Sortie correcte des accents
+\usepackage{lmodern}                        % Police vectorielle moderne
+
+% --- Mathématiques et symboles scientifiques ---
+\usepackage{amsmath, amssymb, amsfonts}     % Pour les formules et symboles mathématiques
+\usepackage{siunitx}                        % Gestion des unités scientifiques (1.23 en et 1,23 fr) \SI{3.5}{mg/L} -> possibilité aussi de faire des unités personnalisées voir chatGPT au besoin
+
+% --- Images et figures ---
+\usepackage{graphicx}                       % Insertion d'images
+\usepackage{float}                          % Placement forcé avec [H]
+\usepackage[font=small,labelfont=bf,width=0.8\textwidth]{caption}   % Style des légendes
+\usepackage{subcaption}                     % Sous-figures
+% \usepackage{svg}                          % Pour inclure des fichiers SVG
+
+% --- Tableaux et couleurs ---
+\usepackage[table,xcdraw]{xcolor}           % Couleurs dans les tableaux
+\usepackage{multirow}                       % Fusion de cellules
+% \usepackage{booktabs}                     % Tableaux élégants si besoin (\toprule...)
+
+% --- Bibliographie ---
+\usepackage[backend=biber, style=apa, sorting=nyt, url=false]{biblatex}
+\addbibresource{references.bib}             % Fichier de bibliographie
+% \addbibresource{biblio_manuelle.bib}      % Autre fichier possible -> utiliser betterbiblatex... ?
+% Réglages typographiques utiles
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+%Augmente le seuil de coupure dans les URL en bibliographie. Cela évite les césures moches dans les longues URL.
+%\renewcommand*{\labelnamepunct}{\newunitpunct\par}% Met un saut de ligne après les noms d’auteur au lieu d’un point, pour une bibliographie plus aérée.
+%\renewbibmacro{in:}{\newline In:}           % Met également un saut de ligne avant le mot In: (chapitre dans un ouvrage), pour un rendu plus clair.
+%\DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily} % Restaure un comportement cohérent en français pour la bibliographie dans la mise en forme des noms de famille
+
+% --- Glossaire et acronymes ---
+\usepackage[toc, acronym]{glossaries}
+\makeglossaries
+% \renewcommand*{\glsentryfmt}[1]{#1}       % Désactiver l'insertion automatique de la définition dans le texte
+
+% --- Hyperliens ---
+\usepackage{hyperref}
+% \usepackage{cleveref}                     % Références intelligentes (ex: \cref{fig:truc})
+
+% --- Commentaires en marge (optionnels) ---
+\usepackage[textsize=footnotesize, color=orange!20]{todonotes}
+
+% --- Gestion des annexes ---
+%\usepackage{appendix}                       % Gestion propre des annexes : inutile avec la classe memoir

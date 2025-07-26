@@ -1,0 +1,58 @@
+% Marges asymétriques pour impression recto-verso
+\usepackage{geometry}
+\geometry{
+  top=2.5cm,
+  bottom=2.5cm,
+  inner=2.8cm,
+  outer=3.5cm,
+  bindingoffset=1cm,
+  includehead % Permet de conserver un espacement de 2.5 par rapport aux en-têtes plutôt que les bords de page.
+}
+
+% Interligne plus aéré
+%\usepackage{setspace}   % Utilisation de \setstretch{1.05} pour la gestion des interlignes.
+%\setstretch{1.05} % Reglage des interlignes
+\linespread{1.05}   % Memoir intègre en interne la gestion de l'interlignage...
+
+% Paragraphe : pas d'indentation + saut entre paragraphes
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.7em}
+
+% Améliorations typographiques
+\usepackage{microtype} % césure fine, justification plus jolie
+
+% Style des titres (sobre) % maîtrise fine
+%\usepackage{titlesec}
+%\titleformat{\chapter}[hang]{\Large\bfseries\titlefont}{}{0pt}{}
+%\titleformat{\section}[hang]{\large\bfseries}{}{0pt}{}
+%\titleformat{\subsection}[runin]{\bfseries}{}{0pt}{}
+%\titlespacing*{\chapter}{0pt}{20pt}{10pt}
+%\titlespacing*{\section}{0pt}{12pt}{6pt}
+
+% Style des titres natif à memoir (simple et stable)
+%\chapterstyle{section} % ou 'default', 'dash', 'hangnum', etc.
+
+% Appliquer la bonne police (définie comme \titlefont dans fonts.tex) aux titres de chapitres
+%\renewcommand{\chapnamefont}{\titlefont\LARGE}  % "Chapitre"
+%\renewcommand{\chapnumfont}{\titlefont\LARGE}   % Numéro
+%\renewcommand{\chaptitlefont}{\titlefont\LARGE} % Titre
+% tailles polices : \tiny < \scriptsize < \footnotesize < \small < \normalsize < \large < \Large < \LARGE < \huge < \Huge
+% graisse : \bfseries
+
+% Numérotation continue des sections (optionnel)
+% \counterwithout{section}{chapter} % décommente si tu ne veux pas 1.1, 1.2, mais juste 1, 2, 3
+
+% En-têtes et pieds de page classiques (peu chargés)
+\pagestyle{plain} % pas d'en-tête et numerotation en bas centrée.
+% Possibilité avec le package fancyhdr de maîtriser les entêtes... plus tard.
+
+% ============================
+% Mise en page - OLD
+% ============================
+%\usepackage[top=1.5cm,bottom=2cm,left=2.5cm,right=2.5cm,includehead]{geometry} % Marges personnalisées
+%\usepackage{setspace}                       % Pour gérer l'interligne (\onehalfspacing, etc.)
+% \usepackage{pdfpages}                     % Pour gérer l'insertion de PDF...
+% \usepackage{afterpage}                    % Pour pouvoir forcer les sauts de page proprement : \afterpage{\clearpage} force l’insertion de toutes les figures en attente juste après cette page
+% \usepackage[compact]{titlesec}            % Mise en forme des titres plus compacte
+% \usepackage[table,xcdraw]{xcolor}         % Gérer les couleurs dans le document notamment dans les tableaux
+% voir pour utiliser police / font perso (ex: Lato).

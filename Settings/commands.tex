@@ -1,0 +1,29 @@
+% Pour les commandes personnalisées
+
+% --- Page blanche entre sections, sans numéro ---
+\newcommand{\blankpage}{%
+  \newpage
+  \null
+  \thispagestyle{empty}%
+  \addtocounter{page}{-1}%
+  \newpage
+}
+
+% --- Saut vertical court (optionnel) ---
+\newcommand{\smallskipline}{\vspace{0.5\baselineskip}}
+
+% --- Saut vertical moyen (optionnel) ---
+\newcommand{\medskipline}{\vspace{1\baselineskip}}
+
+% --- Saut vertical long (optionnel) ---
+\newcommand{\bigskipline}{\vspace{2\baselineskip}}
+
+% --- Ligne horizontale (utile en page de garde, etc.) ---
+\newcommand{\HRule}{\rule{\linewidth}{0.4pt}}
+
+% --- Commentaire en marge (léger) ---
+\usepackage[textsize=footnotesize, color=orange!20]{todonotes}
+\newcommand{\commentaire}[2][]{\todo[#1]{#2}}
+
+% --- Paragraphe mis en valeur (style "new thought") ---
+\newcommand{\newthought}[1]{\textbf{#1}\hspace{0.25em}}
