@@ -35,16 +35,22 @@
 %\DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily} % Restaure un comportement cohérent en français pour la bibliographie dans la mise en forme des noms de famille
 
 % --- Glossaire et acronymes ---
-\usepackage[toc, acronym]{glossaries}
+\usepackage[acronym]{glossaries}
+\input{0_Liminaires/glossaire_definitions}
 \makeglossaries
 % \renewcommand*{\glsentryfmt}[1]{#1}       % Désactiver l'insertion automatique de la définition dans le texte
-
-% --- Hyperliens ---
-\usepackage{hyperref}
-% \usepackage{cleveref}                     % Références intelligentes (ex: \cref{fig:truc})
 
 % --- Commentaires en marge (optionnels) ---
 \usepackage[textsize=footnotesize, color=orange!20]{todonotes}
 
 % --- Gestion des annexes ---
 %\usepackage{appendix}                       % Gestion propre des annexes : inutile avec la classe memoir
+
+% --- Hyperliens ---
+\usepackage[colorlinks=true,
+            linkcolor=black,
+            citecolor=black,
+            filecolor=black,
+            urlcolor=blue]{hyperref}
+%\usepackage[hidelinks]{hyperref}            
+% \usepackage{cleveref}                     % Références intelligentes (ex: \cref{fig:truc})
