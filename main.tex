@@ -26,11 +26,7 @@ twoside
 
 % Table des matières
 \pagestyle{plain}
-\tableofcontents
-
-% Glossaire (généré si nécessaire)
-\include{0_Liminaires/glossaire}
-%\input{0_Liminaires/glossaire}
+\tableofcontents*
 
 % Corps principal
 \mainmatter
@@ -40,24 +36,34 @@ twoside
 % ...
 \include{0_Liminaires/conclusion}
 
-%\backmatter
-% Bibliographie
-\newpage
-\addcontentsline{toc}{chapter}{Bibliographie} % ajoute manuellement la Bibliographie dans la table des matières (utile si \printbibliography ne le fait pas automatiquement).
-\printbibliography % imprime ta bibliographie complète.
+% … après le corps principal …
+\backmatter
 
-% Liste des figures
-\newpage
-\addcontentsline{toc}{chapter}{Table des figures}
-\listoffigures
+% — BIBLIOGRAPHIE —
+%\newpage
+\printbibliography[heading=bibintoc,title={Bibliographie}]
 
-% Leste des tableaux
+% — LISTES —
+\cleartoevenpage     % page droite en recto/verso
+\listoffigures % Liste des figures
 \newpage
-\addcontentsline{toc}{chapter}{Liste des tableaux}
-\listoftables
+\listoftables % Liste des tableaux
 
-% Annexes
-\appendix
+% — GLOSSAIRES —  
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Glossaire}
+\printglossary[type=main, title={}]
+
+\addcontentsline{toc}{chapter}{Acronymes}
+\printglossary[type=\acronymtype, title={}]
+
+
+% — ANNEXES —
+\cleardoublepage % Assure que chaque nouvelle partie commence bien sur une page droite.
+\chapter*{Annexes}%
+\addcontentsline{toc}{chapter}{Annexes} % un seul titre “Annexes”
+\appendix                               % passe en A, B, C…
+%\setcounter{chapter}{0}                 % si tu veux recommencer A à 1
 \include{Annexes/annexes}
 
 \end{document}
