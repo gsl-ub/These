@@ -2,31 +2,39 @@
 % Pour utiliser fontspec (nécessite xelatex ou lualatex) -> Xualatex mieux
 \usepackage{fontspec}
 
-% Chemin vers les polices
-\defaultfontfeatures{Path=Fonts/}
-
-% Chemin vers les polices personnalisées (placer les .otf dans Fonts/ à la racine)
-\defaultfontfeatures{Path=Fonts/}
-
-% Police principale du corps du texte
-\setmainfont{Produkt-Regular.otf}[
-  Extension = .otf,
-  UprightFont = * ,
-  BoldFont = Produkt-Bold,
-  ItalicFont = Produkt-Italic,
-  BoldItalicFont = Produkt-BoldItalic
-]
-\setmainfont{EB Garamond}[    % nom exact du fichier ou de la police installée
-  UprightFont      = *-Regular,
-  ItalicFont       = *-Italic,
-  BoldFont         = *-Bold,
-  BoldItalicFont   = *-BoldItalic,
-  Extension        = .otf
+% Police principale (corps du texte)
+\setmainfont{RobotoSerif}[% Le nom exact peut dépendre du système, vérifiez les fichiers .ttf/.otf
+  Path=Fonts/Roboto_Serif/static/,
+  UprightFont={*_72pt-Light},    % Pour le texte normal (Light 300)
+  ItalicFont={*-LightItalic}, % Pour l'italique (Light 300 Italic)
+  BoldFont={*-SemiBold},        % Pour le gras (Regular)
+  BoldItalicFont={*-SemiBoldItalic},    % Pour le gras italique (Italic)
+  Extension=.ttf
 ]
 
-% Police pour les titres ou parties spécifiques
-\newfontfamily\titlefont{AvenirNext-Regular.otf}[
-  Extension = .otf,
-  UprightFont = * ,
-  BoldFont = AvenirNext-Bold
-]
+% Police pour les titres : Roboto Slab Light 300
+\newfontfamily\titrefont[
+    Path=Fonts/Roboto_Slab/static/,
+    UprightFont = *-Light.ttf,
+    BoldFont = *-Regular.ttf
+]{RobotoSlab}
+
+% Couleurs globales du document : éclaircir les polices au besoin
+%\definecolor{darkgraytext}{gray}{0.15}
+%\color{darkgraytext}
+
+% Polices des titres de section (Roboto Slab Light 300)
+% memoir utilise des commandes spécifiques pour les polices des titres de section
+%\renewcommand{\chapnamefont}{\normalfont\fontspec{Roboto Slab}[UprightFont={*-Light300}]} % Nom du chapitre (si affiché)
+%\renewcommand{\chapnumfont}{\normalfont\fontspec{Roboto Slab}[UprightFont={*-Light300}]} % Numéro de chapitre (si affiché)
+%\renewcommand{\chaptitlefont}{\normalfont\fontspec{Roboto Slab}[UprightFont={*-Light300}]\Huge} % Titre de chapitre
+%\renewcommand{\sectfont}{\normalfont\fontspec{Roboto Slab}[UprightFont={*-Light300}]\Large} % Titre de section
+%\renewcommand{\subsectfont}{\normalfont\fontspec{Roboto Slab}[UprightFont={*-Light300}]\large} % Titre de sous-section
+%\renewcommand{\subsubsectfont}{\normalfont\fontspec{Roboto Slab}[UprightFont={*-Light300}]\normalsize} % Titre de sous-sous-section
+% Et ainsi de suite pour les autres niveaux si vous les utilisez (paragraph, subparagraph)
+%\renewcommand{\chaptitlefont}{\titlefont\LARGE} % Titre
+% tailles polices : \tiny < \scriptsize < \footnotesize < \small < \normalsize < \large < \Large < \LARGE < \huge < \Huge
+% graisse : \bfseries
+
+% Ne pas oublier de recaluler la largeur des blocs texte après un changement de police, de graisse de police ou même de taille !
+% Bien tout définir...

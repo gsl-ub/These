@@ -1,27 +1,43 @@
-% Marges asymétriques pour impression recto-verso
 \usepackage[pass]{geometry}
-%\usepackage{geometry}
-%\geometry{
-%  top=2.5cm,
-%  bottom=2.5cm,
-%  inner=2.8cm,
-%  outer=3.5cm,
-%  bindingoffset=1cm,
-%  includehead % Permet de conserver un espacement de 2.5 par rapport aux en-têtes plutôt que les bords de page.
-%}
-% Utilisation des fonctionnalités de la classe mémoire sinon
+% ---- Utilisation des fonctionnalités de la classe memoir ----
+% 1. Taille du papier (définie lors de l'appel à la class memoir
+%\settrims{0pt}{0pt} %\settrims{<haut>}{<bord_de_coupe>} en cas de bords perdus, en définir 2
+
+% 2. Bloc de texte & marges
+%\settypeblocksize{<hauteur>}{<largeur>}{<ratio>}
+%\setlrmargins{⟨spine⟩}{⟨edge⟩}{⟨ratio⟩}
+%\setulmargins{<haut>}{<bas>}{<ratio>} % Utilisez cette commande si la hauteur de votre bloc de texte est déjà fixe (par \settypeblocksize) et que vous positionnez le bloc en ajustant les marges, ex : \settypeblocksize{41\baselineskip + \topskip}{33pc}{*}
+\setlrmarginsandblock{2.5cm}{5cm}{*} % Marges latérales (gauche/droite)
+\setulmarginsandblock{2.5cm}{2.5cm}{*} % Marges haut/bas
+
+% 3. En-têtes et pieds de page
+\setheadfoot{\onelineskip}{2\onelineskip} % \setheadfoot{<hauteur_entete>}{<espacement_pied_de_page>}
+%\setheaderspaces{1.5\onelineskip}{*} % \setheaderspaces{<chute_entete>}{<separation_entete_texte>}{<ratio>}
+
+% 4. Notes marginales
+\setmarginnotes{1em}{3.5cm}{1.5em} %\setmarginnotes{<separation>}{<largeur>}{<poussee>}
+
+% Fin. Corrections automatiques de la mise en page
+%\checkandfixthelayout[nearest] % Ajuste la hauteur du bloc de texte à un multiple entier de lignes
+\checkandfixthelayout % application immédiate
 
 % Interligne plus aéré
-%\usepackage{setspace}   % Utilisation de \setstretch{1.05} pour la gestion des interlignes.
-%\setstretch{1.05} % Reglage des interlignes
 \linespread{1.05}   % Memoir intègre en interne la gestion de l'interlignage...
 
 % Paragraphe : pas d'indentation + saut entre paragraphes
 %\setlength{\parindent}{0pt}
-\setlength{\parskip}{0.4em}
+%\setlength{\parskip}{0.7em}
+\setlength{\parskip}{0.2\onelineskip}
 
 % Améliorations typographiques
 \usepackage{microtype} % césure fine, justification plus jolie
+
+% Style de page minimaliste personnalisé
+\makepagestyle{minimaliste}
+\makeevenhead{minimaliste}{}{}{\itshape\leftmark} % chapitre à droite (pages paires)
+\makeoddhead{minimaliste}{\itshape\rightmark}{}{} % section à gauche (pages impaires)
+\makeevenfoot{minimaliste}{\thepage}{}{} % numéro page à gauche en bas (pages paires)
+\makeoddfoot{minimaliste}{}{}{\thepage} % numéro page à droite en bas (pages impaires)
 
 % Style des titres (sobre) % maîtrise fine
 %\usepackage{titlesec}
@@ -33,13 +49,6 @@
 
 % Style des titres natif à memoir (simple et stable)
 %\chapterstyle{section} % ou 'default', 'dash', 'hangnum', etc.
-
-% Appliquer la bonne police (définie comme \titlefont dans fonts.tex) aux titres de chapitres
-%\renewcommand{\chapnamefont}{\titlefont\LARGE}  % "Chapitre"
-%\renewcommand{\chapnumfont}{\titlefont\LARGE}   % Numéro
-%\renewcommand{\chaptitlefont}{\titlefont\LARGE} % Titre
-% tailles polices : \tiny < \scriptsize < \footnotesize < \small < \normalsize < \large < \Large < \LARGE < \huge < \Huge
-% graisse : \bfseries
 
 % Mettre paragraph et subparagraph sur leur propre ligne
 %\setbeforeparaskip{1.5ex}   % espace avant paragraph
@@ -54,17 +63,12 @@
 %\setbeforesubparaheadhook{} 
 %\setaftersubparaheadhook{\par}
 
-% En-têtes et pieds de page classiques (peu chargés)
-\pagestyle{plain} % pas d'en-tête et numerotation en bas centrée.
-% Possibilité avec le package fancyhdr de maîtriser les entêtes... plus tard.
-
-% ============================
-% Mise en page - OLD
-% ============================
-%\usepackage[top=1.5cm,bottom=2cm,left=2.5cm,right=2.5cm,includehead]{geometry} % Marges personnalisées
-%\usepackage{setspace}                       % Pour gérer l'interligne (\onehalfspacing, etc.)
-% \usepackage{pdfpages}                     % Pour gérer l'insertion de PDF...
-% \usepackage{afterpage}                    % Pour pouvoir forcer les sauts de page proprement : \afterpage{\clearpage} force l’insertion de toutes les figures en attente juste après cette page
-% \usepackage[compact]{titlesec}            % Mise en forme des titres plus compacte
-% \usepackage[table,xcdraw]{xcolor}         % Gérer les couleurs dans le document notamment dans les tableaux
-% voir pour utiliser police / font perso (ex: Lato).
+%\usepackage{geometry}
+%\geometry{
+%  top=2.5cm,
+%  bottom=2.5cm,
+%  inner=2.8cm,
+%  outer=3.5cm,
+%  bindingoffset=1cm,
+%  includehead % Permet de conserver un espacement de 2.5 par rapport aux en-têtes plutôt que les bords de page.
+%}

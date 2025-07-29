@@ -1,9 +1,10 @@
 % ============================
 % Classe du document
 % ============================
-\documentclass[ % 'report' est bien adapté aux thèses, 'memoir' plus complet (equivalents 'scrbook', 'scrreprt' de Koma-script))
+\documentclass[
 a4paper,
 11pt,
+openright,%openany, % evite les pages blanches forcées entre les chapitres
 twoside
 ]{memoir}
 
@@ -20,42 +21,49 @@ twoside
 % ============================
 \begin{document}
 
-\include{0_Liminaires/page_de_garde}
+{\newgeometry{top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm,includehead=false}
+    \include{0_Liminaires/page_de_garde}
 
-\frontmatter
-\include{0_Liminaires/Abstracts}
-\pagestyle{plain}
-\include{0_Liminaires/citations_remerciements}
+    \frontmatter
 
-\cleardoublepage                     % forcer page de droite suivante
-% Table des matières
-\tableofcontents*
+    \include{0_Liminaires/Abstracts}
+    \pagestyle{plain}
+    \include{0_Liminaires/citations_remerciements}
+    
+    \cleardoublepage                     % forcer page de droite suivante
+    
+    % Table des matières
+    \tableofcontents
 
-% — Acronymes —  
-\printglossary[type=\acronymtype, title={Acronymes}, toctitle={Acronymes}]
+    % — Acronymes —
+    \printglossary[type=\acronymtype, title={Acronymes}, toctitle={Acronymes}]
+\restoregeometry}
 
-\mainmatter
+\mainmatter % ATTENTION : note nationale - pagination commencer - page titre - continue - englober annexes, illustrations, tableaux...
+%\pagestyle{ruled}
+\pagestyle{minimaliste}
 \include{0_Liminaires/introduction}
 \include{1_Chapitre_1_Etat_Art/chapitre_1_etat_art}
 %\include{2_Chapitre_2_Mat_et_Met/chapitre_2_materiel_et_methode}
 % ...
 \include{0_Liminaires/conclusion}
 
+{\newgeometry{top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm,includehead=false}
+    %\backmatter % Commenté car fou la merde dans les annexes
+    \pagestyle{plain}
+    % — BIBLIOGRAPHIE —
+    \printbibliography[heading=bibintoc,title={Bibliographie}]
 
-%\backmatter % Commenté car fou la merde dans les annexes
-% — BIBLIOGRAPHIE —
-\printbibliography[heading=bibintoc,title={Bibliographie}]
+    % — LISTES —
+    \cleartoevenpage     % prochaine page paire ?
+    \listoffigures % Liste des figures
+    \newpage
+    \listoftables % Liste des tableaux
 
-% — LISTES —
-\cleartoevenpage     % prochaine page paire ?
-\listoffigures % Liste des figures
-\newpage
-\listoftables % Liste des tableaux
-
-% — GLOSSAIRE —  
-\cleardoublepage
-\printglossary[type=main, title={Glossaire}]
-
+    % — GLOSSAIRE —  
+    \cleardoublepage
+    \printglossary[type=main, style=altlist, title={Glossaire}]
+\restoregeometry}
 
 % — ANNEXES —
 \cleardoublepage % Assure que chaque nouvelle partie commence bien sur une page droite.
