@@ -1,8 +1,12 @@
 % --- Langue et encodage (gérés par fontspec si LuaLaTeX/XeLaTeX) ---
 \usepackage[english, french]{babel}         % Gestion multilingue, langue française par défaut (dernière) : typographie, noms automatiques, utiliser \selectlanguage{english} pour basculer en anglais et \begin{otherlanguage}{french} pour des inclusions fr suivi de \end{otherlanguage} puis de \selectlanguage{english} pour reprendre une partie en anglais.
 \usepackage{csquotes}                       % Guillemets typographiques adaptés à la langue
+\addto\captionsfrench{%
+  \renewcommand{\listfigurename}{Liste des illustrations}%
+  \renewcommand{\listtablename}{Liste des tableaux}%
+}
+\usepackage{multicol}                       % pour un environnement 2-colonnes
 % A supprimer lorsque j'utiliserai des polices personnalisées.
-%\usepackage[utf8]{inputenc}                 % Encodage UTF-8 (utile en local)
 \usepackage[T1]{fontenc}                    % Sortie correcte des accents
 \usepackage{lmodern}                        % Police vectorielle moderne
 
@@ -35,7 +39,7 @@
 %\DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily} % Restaure un comportement cohérent en français pour la bibliographie dans la mise en forme des noms de famille
 
 % --- Glossaire et acronymes ---
-\usepackage[acronym]{glossaries}
+\usepackage[toc, acronym]{glossaries}
 \input{0_Liminaires/glossaire_definitions}
 \makeglossaries
 % \renewcommand*{\glsentryfmt}[1]{#1}       % Désactiver l'insertion automatique de la définition dans le texte

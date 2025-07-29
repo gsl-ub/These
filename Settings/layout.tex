@@ -1,13 +1,15 @@
 % Marges asymétriques pour impression recto-verso
-\usepackage{geometry}
-\geometry{
-  top=2.5cm,
-  bottom=2.5cm,
-  inner=2.8cm,
-  outer=3.5cm,
-  bindingoffset=1cm,
-  includehead % Permet de conserver un espacement de 2.5 par rapport aux en-têtes plutôt que les bords de page.
-}
+\usepackage[pass]{geometry}
+%\usepackage{geometry}
+%\geometry{
+%  top=2.5cm,
+%  bottom=2.5cm,
+%  inner=2.8cm,
+%  outer=3.5cm,
+%  bindingoffset=1cm,
+%  includehead % Permet de conserver un espacement de 2.5 par rapport aux en-têtes plutôt que les bords de page.
+%}
+% Utilisation des fonctionnalités de la classe mémoire sinon
 
 % Interligne plus aéré
 %\usepackage{setspace}   % Utilisation de \setstretch{1.05} pour la gestion des interlignes.
@@ -15,8 +17,8 @@
 \linespread{1.05}   % Memoir intègre en interne la gestion de l'interlignage...
 
 % Paragraphe : pas d'indentation + saut entre paragraphes
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0.7em}
+%\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.4em}
 
 % Améliorations typographiques
 \usepackage{microtype} % césure fine, justification plus jolie
@@ -39,8 +41,18 @@
 % tailles polices : \tiny < \scriptsize < \footnotesize < \small < \normalsize < \large < \Large < \LARGE < \huge < \Huge
 % graisse : \bfseries
 
-% Numérotation continue des sections (optionnel)
-% \counterwithout{section}{chapter} % décommente si tu ne veux pas 1.1, 1.2, mais juste 1, 2, 3
+% Mettre paragraph et subparagraph sur leur propre ligne
+%\setbeforeparaskip{1.5ex}   % espace avant paragraph
+%\setafterparaskip{1.0ex}    % espace après paragraph
+%\setparaheadstyle{\normalfont\bfseries}    % paragraphe en gras
+%\setbeforeparheadhook{}   
+%\setafterparheadhook{\par}  % forcer saut de ligne
+
+%\setbeforesubparaskip{1.2ex}
+%\setaftersubparaskip{0.8ex}
+%\setsubparaheadstyle{\normalfont\itshape}
+%\setbeforesubparaheadhook{} 
+%\setaftersubparaheadhook{\par}
 
 % En-têtes et pieds de page classiques (peu chargés)
 \pagestyle{plain} % pas d'en-tête et numerotation en bas centrée.

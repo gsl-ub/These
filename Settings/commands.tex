@@ -27,3 +27,12 @@
 
 % --- Paragraphe mis en valeur (style "new thought") ---
 \newcommand{\newthought}[1]{\textbf{#1}\hspace{0.25em}}
+
+% --- Environnement pour forcer une page droite non paginée ---
+\newenvironment{rightpage}{%
+  \cleardoublepage      % va à la page droite suivante
+  \thispagestyle{empty} % pas de numéro
+}{%
+  \vfill                % pousse le contenu en haut
+  \cleardoublepage      % termine sur une page droite vierge
+}

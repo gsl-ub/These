@@ -15,20 +15,25 @@ twoside
 \input{Settings/layout.tex}                 % mise en page
 \input{Settings/commands.tex}               % commandes personnalisées
 
+% ============================
+% Construction du document
+% ============================
 \begin{document}
 
-% Page de garde et liminaires
-\pagestyle{empty}
+\include{0_Liminaires/page_de_garde}
 
-\include{0_Liminaires/page_de_garde_abstract}
 \frontmatter
+\include{0_Liminaires/Abstracts}
+\pagestyle{plain}
 \include{0_Liminaires/citations_remerciements}
 
+\cleardoublepage                     % forcer page de droite suivante
 % Table des matières
-\pagestyle{plain}
 \tableofcontents*
 
-% Corps principal
+% — Acronymes —  
+\printglossary[type=\acronymtype, title={Acronymes}, toctitle={Acronymes}]
+
 \mainmatter
 \include{0_Liminaires/introduction}
 \include{1_Chapitre_1_Etat_Art/chapitre_1_etat_art}
@@ -36,33 +41,27 @@ twoside
 % ...
 \include{0_Liminaires/conclusion}
 
-% … après le corps principal …
-\backmatter
 
+%\backmatter % Commenté car fou la merde dans les annexes
 % — BIBLIOGRAPHIE —
-%\newpage
 \printbibliography[heading=bibintoc,title={Bibliographie}]
 
 % — LISTES —
-\cleartoevenpage     % page droite en recto/verso
+\cleartoevenpage     % prochaine page paire ?
 \listoffigures % Liste des figures
 \newpage
 \listoftables % Liste des tableaux
 
-% — GLOSSAIRES —  
+% — GLOSSAIRE —  
 \cleardoublepage
-\addcontentsline{toc}{chapter}{Glossaire}
-\printglossary[type=main, title={}]
-
-\addcontentsline{toc}{chapter}{Acronymes}
-\printglossary[type=\acronymtype, title={}]
+\printglossary[type=main, title={Glossaire}]
 
 
 % — ANNEXES —
 \cleardoublepage % Assure que chaque nouvelle partie commence bien sur une page droite.
-\chapter*{Annexes}%
-\addcontentsline{toc}{chapter}{Annexes} % un seul titre “Annexes”
 \appendix                               % passe en A, B, C…
+%\appendixpage     % affiche un titre “ANNEXES”
+%\addappheadtotoc  % ajoute “ANNEXES” une fois dans la ToC
 %\setcounter{chapter}{0}                 % si tu veux recommencer A à 1
 \include{Annexes/annexes}
 
