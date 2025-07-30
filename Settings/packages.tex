@@ -27,9 +27,9 @@
 % \usepackage{booktabs}                     % Tableaux élégants si besoin (\toprule...)
 
 % --- Bibliographie ---
-\usepackage[backend=biber, style=apa, sorting=nyt, url=false]{biblatex} % style=iso-alphabetic, cas complexes ! norme AFNOR Z 44005 (reco nationale)
+\usepackage[backend=biber, style=apa, defernumbers=true, refsection=chapter, sorting=nyt, url=false]{biblatex} % style=iso-alphabetic, cas complexes ! norme AFNOR Z 44005 (reco nationale)
 \addbibresource{references.bib}             % Fichier de bibliographie
-% \addbibresource{biblio_manuelle.bib}      % Autre fichier possible -> utiliser betterbiblatex... ?
+% \addbibresource[label=art1]{biblio_article1.bib}      % Autre fichier possible -> utiliser betterbiblatex
 % Réglages typographiques utiles
 \setcounter{biburllcpenalty}{7000}
 \setcounter{biburlucpenalty}{8000}
@@ -39,16 +39,19 @@
 %\DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily} % Restaure un comportement cohérent en français pour la bibliographie dans la mise en forme des noms de famille
 
 % --- Glossaire et acronymes ---
-\usepackage[toc, acronym]{glossaries}
-\input{0_Liminaires/glossaire_definitions}
+%\usepackage[toc, acronym]{glossaries}
+\usepackage[acronym, toc]{glossaries-extra}
+\glssetcategoryattribute{acronym}{counter}{none} % désactive les compteurs
+\setabbreviationstyle[acronym]{long-short}
+\glsdisablehyper % <-- ici : désactivation des hyperliens
 \makeglossaries
-% \renewcommand*{\glsentryfmt}[1]{#1}       % Désactiver l'insertion automatique de la définition dans le texte
+\input{0_Liminaires/glossaire_definitions}
 
 % --- Commentaires en marge (optionnels) ---
 \usepackage[textsize=footnotesize, color=orange!20]{todonotes}
 
-% --- Gestion des annexes ---
-%\usepackage{appendix}                       % Gestion propre des annexes : inutile avec la classe memoir
+% --- Mini ToC pour chaque chapitres ---
+%\usepackage{minitoc} % Compatible avec memoir, sinon etoc, sinon fonction interne (voir manuel p.415)
 
 % --- Hyperliens ---
 \usepackage[colorlinks=true,

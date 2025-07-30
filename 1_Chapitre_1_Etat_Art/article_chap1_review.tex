@@ -1,2 +1,21 @@
 Faire ici une biblio dédiée, utiliser multicols 2, eventuellement utiliser refsection et une bibliographie associée.
-Pour éviter soucis page gauche / droite peut être rebasculer sur des pages 
+Pour éviter soucis page gauche / droite peut être rebasculer sur des pages
+
+\begin{includedarticle}
+  {Titre de l'article}
+  {Auteur1, Auteur2, et al.}
+  {Abstract de l'article ici, suivi des mots-clés.}
+  
+% Corps de l'article ici, en 2 colonnes automatiquement.
+% Figures incluses normalement avec \begin{figure}...\end{figure}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{1_Chapitre_1_Etat_Art/Figures/mafigure.pdf/png/jpeg/...}
+\caption{Légende ici}
+\end{figure}
+% Citations utilisant une biblio locale.
+  
+\bibliographystyle{plain}
+\bibliography{biblio_article1} % petite bibliographie locale spécifique à cet article
+
+\end{includedarticle}

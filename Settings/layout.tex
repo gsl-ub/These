@@ -1,4 +1,4 @@
-\usepackage[pass]{geometry}
+\usepackage[pass]{geometry} % Pour des mises en forme local dans mon doc sans prise de tête liminaires et articles
 % ---- Utilisation des fonctionnalités de la classe memoir ----
 % 1. Taille du papier (définie lors de l'appel à la class memoir
 %\settrims{0pt}{0pt} %\settrims{<haut>}{<bord_de_coupe>} en cas de bords perdus, en définir 2
@@ -8,18 +8,19 @@
 %\setlrmargins{⟨spine⟩}{⟨edge⟩}{⟨ratio⟩}
 %\setulmargins{<haut>}{<bas>}{<ratio>} % Utilisez cette commande si la hauteur de votre bloc de texte est déjà fixe (par \settypeblocksize) et que vous positionnez le bloc en ajustant les marges, ex : \settypeblocksize{41\baselineskip + \topskip}{33pc}{*}
 \setlrmarginsandblock{2.5cm}{5cm}{*} % Marges latérales (gauche/droite)
-\setulmarginsandblock{2.5cm}{2.5cm}{*} % Marges haut/bas
+\setulmarginsandblock{3cm}{3cm}{*} % Marges haut/bas
 
 % 3. En-têtes et pieds de page
 \setheadfoot{\onelineskip}{2\onelineskip} % \setheadfoot{<hauteur_entete>}{<espacement_pied_de_page>}
 %\setheaderspaces{1.5\onelineskip}{*} % \setheaderspaces{<chute_entete>}{<separation_entete_texte>}{<ratio>}
+\setlength{\headheight}{15pt}
 
 % 4. Notes marginales
 \setmarginnotes{1em}{3.5cm}{1.5em} %\setmarginnotes{<separation>}{<largeur>}{<poussee>}
 
 % Fin. Corrections automatiques de la mise en page
 %\checkandfixthelayout[nearest] % Ajuste la hauteur du bloc de texte à un multiple entier de lignes
-\checkandfixthelayout % application immédiate
+%\checkandfixthelayout % application immédiate
 
 % Interligne plus aéré
 \linespread{1.05}   % Memoir intègre en interne la gestion de l'interlignage...
@@ -28,6 +29,8 @@
 %\setlength{\parindent}{0pt}
 %\setlength{\parskip}{0.7em}
 \setlength{\parskip}{0.2\onelineskip}
+
+\checkandfixthelayout % application immédiate
 
 % Améliorations typographiques
 \usepackage{microtype} % césure fine, justification plus jolie
@@ -38,6 +41,12 @@
 \makeoddhead{minimaliste}{\itshape\rightmark}{}{} % section à gauche (pages impaires)
 \makeevenfoot{minimaliste}{\thepage}{}{} % numéro page à gauche en bas (pages paires)
 \makeoddfoot{minimaliste}{}{}{\thepage} % numéro page à droite en bas (pages impaires)
+
+\makepagestyle{articlepage}
+\makeevenhead{articlepage}{\small\itshape\leftmark}{}{}
+\makeoddhead{articlepage}{}{}{\small\itshape\rightmark}
+\makeevenfoot{articlepage}{\thepage}{}{}
+\makeoddfoot{articlepage}{}{}{\thepage}
 
 % Style des titres (sobre) % maîtrise fine
 %\usepackage{titlesec}
