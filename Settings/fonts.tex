@@ -9,6 +9,10 @@
   ItalicFont={*-LightItalic}, % Pour l'italique (Light 300 Italic)
   BoldFont={*-SemiBold},        % Pour le gras (Regular)
   BoldItalicFont={*-SemiBoldItalic},    % Pour le gras italique (Italic)
+  %FontFace = {b}{n}{*-SemiBold},          % \bfseries → SemiBold
+  %FontFace = {b}{it}{*-SemiBoldItalic},   % \bfseries\itshape → SemiBoldItalic
+  %FontFace = {m}{n}{*-Light},             % \mdseries → Light
+  %FontFace = {m}{it}{*-LightItalic},       % \mdseries\itshape → LightItalic
   Extension=.ttf
 ]
 
@@ -25,6 +29,12 @@
 
 % Polices des titres de section (Roboto Slab Light 300)
 % memoir utilise des commandes spécifiques pour les polices des titres de section
+%\renewcommand{\chaptitlefont}{\titrefont\Huge\bfseries}
+%\setsecheadstyle{\titrefont\Large\bfseries} % section
+%\setsubsecheadstyle{\titrefont\large\bfseries} % sous-section
+%\setsubsubsecheadstyle{\titrefont\normalsize\bfseries}
+
+% Anciennes commandes
 %\renewcommand{\chapnamefont}{\normalfont\fontspec{Roboto Slab}[UprightFont={*-Light300}]} % Nom du chapitre (si affiché)
 %\renewcommand{\chapnumfont}{\normalfont\fontspec{Roboto Slab}[UprightFont={*-Light300}]} % Numéro de chapitre (si affiché)
 %\renewcommand{\chaptitlefont}{\normalfont\fontspec{Roboto Slab}[UprightFont={*-Light300}]\Huge} % Titre de chapitre

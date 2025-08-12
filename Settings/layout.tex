@@ -18,22 +18,16 @@
 % 4. Notes marginales
 \setmarginnotes{1em}{3.5cm}{1.5em} %\setmarginnotes{<separation>}{<largeur>}{<poussee>}
 
-% Fin. Corrections automatiques de la mise en page
-%\checkandfixthelayout[nearest] % Ajuste la hauteur du bloc de texte à un multiple entier de lignes
-%\checkandfixthelayout % application immédiate
-
 % Interligne plus aéré
 \linespread{1.05}   % Memoir intègre en interne la gestion de l'interlignage...
 
 % Paragraphe : pas d'indentation + saut entre paragraphes
-%\setlength{\parindent}{0pt}
-%\setlength{\parskip}{0.7em}
-\setlength{\parskip}{0.2\onelineskip}
+\setlength{\parindent}{1em} % inutile
+\setlength{\parskip}{0.2\onelineskip} %\setlength{\parskip}{0.7em}
 
+% Fin. Corrections automatiques de la mise en page
+%\checkandfixthelayout[nearest] % Ajuste la hauteur du bloc de texte à un multiple entier de lignes
 \checkandfixthelayout % application immédiate
-
-% Améliorations typographiques
-\usepackage{microtype} % césure fine, justification plus jolie
 
 % Style de page minimaliste personnalisé
 \makepagestyle{minimaliste}
@@ -42,11 +36,10 @@
 \makeevenfoot{minimaliste}{\thepage}{}{} % numéro page à gauche en bas (pages paires)
 \makeoddfoot{minimaliste}{}{}{\thepage} % numéro page à droite en bas (pages impaires)
 
-\makepagestyle{articlepage}
-\makeevenhead{articlepage}{\small\itshape\leftmark}{}{}
-\makeoddhead{articlepage}{}{}{\small\itshape\rightmark}
-\makeevenfoot{articlepage}{\thepage}{}{}
-\makeoddfoot{articlepage}{}{}{\thepage}
+% Pages paires : numéro en bas à gauche
+\makeevenfoot{plain}{\thepage}{}{}
+% Pages impaires : numéro en bas à droite
+\makeoddfoot{plain}{}{}{\thepage}
 
 % Style des titres (sobre) % maîtrise fine
 %\usepackage{titlesec}
@@ -57,7 +50,12 @@
 %\titlespacing*{\section}{0pt}{12pt}{6pt}
 
 % Style des titres natif à memoir (simple et stable)
-%\chapterstyle{section} % ou 'default', 'dash', 'hangnum', etc.
+\chapterstyle{veelo} % ou 'default', 'veelo', 'companion', 'ell', 'demo2', 'dash', etc.
+
+\addto\captionsfrench{%
+  \renewcommand{\listfigurename}{Liste des illustrations}%
+  \renewcommand{\listtablename}{Liste des tableaux}%
+}
 
 % Mettre paragraph et subparagraph sur leur propre ligne
 %\setbeforeparaskip{1.5ex}   % espace avant paragraph
@@ -72,12 +70,21 @@
 %\setbeforesubparaheadhook{} 
 %\setaftersubparaheadhook{\par}
 
-%\usepackage{geometry}
-%\geometry{
-%  top=2.5cm,
-%  bottom=2.5cm,
-%  inner=2.8cm,
-%  outer=3.5cm,
-%  bindingoffset=1cm,
-%  includehead % Permet de conserver un espacement de 2.5 par rapport aux en-têtes plutôt que les bords de page.
-%}
+% ---- Cadre encart remerciements ----
+\tcbset{
+  gratitude/.style={
+    colframe=gray!50,        % couleur du contour
+    colback=white,           % fond
+    boxrule=0.3pt,           % épaisseur du trait
+    arc=2pt,                 % coins légèrement arrondis
+    left=8pt, right=8pt, top=6pt, bottom=6pt,
+    width=0.75\textwidth,    % largeur fixe
+    enhanced jigsaw,         % rendu propre
+    before skip=1cm,         % espace au-dessus
+    after skip=0pt,          % espace en-dessous
+    overlay={%
+      \node[anchor=north west, xshift=-0.6cm, yshift=0.6cm] at (frame.north east)
+        {\includegraphics[width=0.9cm]{0_Liminaires/Images/EtoilePP.png}}; % étoile qui déborde
+    }
+  }
+}

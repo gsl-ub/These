@@ -1,14 +1,14 @@
 % --- Langue et encodage (gérés par fontspec si LuaLaTeX/XeLaTeX) ---
 \usepackage[english, french]{babel}         % Gestion multilingue, langue française par défaut (dernière) : typographie, noms automatiques, utiliser \selectlanguage{english} pour basculer en anglais et \begin{otherlanguage}{french} pour des inclusions fr suivi de \end{otherlanguage} puis de \selectlanguage{english} pour reprendre une partie en anglais.
 \usepackage{csquotes}                       % Guillemets typographiques adaptés à la langue
-\addto\captionsfrench{%
-  \renewcommand{\listfigurename}{Liste des illustrations}%
-  \renewcommand{\listtablename}{Liste des tableaux}%
-}
-\usepackage{multicol}                       % pour un environnement 2-colonnes
+\usepackage{microtype}                      % Améliorations typographiques : césure fine, justification plus jolie
+%\usepackage{multicol}                       % pour un environnement 2-colonnes
 % A supprimer lorsque j'utiliserai des polices personnalisées.
 \usepackage[T1]{fontenc}                    % Sortie correcte des accents
 \usepackage{lmodern}                        % Police vectorielle moderne
+
+% --- Inclusion articles PDF ---
+\usepackage{pdfpages}
 
 % --- Mathématiques et symboles scientifiques ---
 \usepackage{amsmath, amssymb, amsfonts}     % Pour les formules et symboles mathématiques
@@ -16,10 +16,12 @@
 
 % --- Images et figures ---
 \usepackage{graphicx}                       % Insertion d'images
+\usepackage[most]{tcolorbox}                % Cadre pour encart
+% \usepackage{svg}                          % Pour inclure des fichiers SVG
+% NB : les 3 packages suivants peuvent être gérés avec la classe memoir directement
 \usepackage{float}                          % Placement forcé avec [H]
 \usepackage[font=small,labelfont=bf,width=0.8\textwidth]{caption}   % Style des légendes
 \usepackage{subcaption}                     % Sous-figures
-% \usepackage{svg}                          % Pour inclure des fichiers SVG
 
 % --- Tableaux et couleurs ---
 \usepackage[table,xcdraw]{xcolor}           % Couleurs dans les tableaux et texte
@@ -48,7 +50,11 @@
 \input{0_Liminaires/glossaire_definitions}
 
 % --- Commentaires en marge (optionnels) ---
-\usepackage[textsize=footnotesize, color=orange!20]{todonotes}
+%\usepackage[textsize=footnotesize, color=orange!20]{todonotes}
+%\usepackage{marginnote}
+% La classe memoir propose une solution de notes de marge native mais peut être moins personnalisable : avec \setmarginnotes{<separation>}{<largeur>}{<poussee>} utilisé dans layout
+%\marginpar[<texte-gauche>]{<texte>}
+%\marginparmargin{<placement>} : contrôle du placement plus fin left, right, outer (par défaut), inner...
 
 % --- Mini ToC pour chaque chapitres ---
 %\usepackage{minitoc} % Compatible avec memoir, sinon etoc, sinon fonction interne (voir manuel p.415)

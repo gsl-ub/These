@@ -1,0 +1,59 @@
+Faire ici une biblio dédiée, utiliser multicols 2, eventuellement utiliser refsection et une bibliographie associée.
+Pour éviter soucis page gauche / droite peut être rebasculer sur des pages
+Voir aussi possibilité du package subfiles ou inclure les PDF directement
+% ----- Insertion locale d'un article -----
+
+\clearpage % force une nouvelle page propre
+
+% modification temporaire des marges locales
+\newgeometry{margin=2cm}
+
+% création d'une entête personnalisée simple via memoir
+\renewcommand{\articletitle}{Cork impact on red wine aging}
+\renewcommand{\articlejournal}{Food Res Int, 203 (2025)}
+
+% application du style personnalisé local
+\pagestyle{article}
+
+% passage temporaire en double colonne
+\twocolumn[
+  \begin{@twocolumnfalse}
+    % Contenu sur une seule colonne (Titre, auteurs, DOI, etc.)
+    \begin{center}
+        \section{Titre de l'article}
+        %\Large\textbf{Titre de l'article}\\[1em]
+        Auteurs\\[0.5em]
+        \normalsize DOI: xxxx, Journal: xxx (année)
+        \vspace{1em}
+    \end{center}
+    % Résumé
+    \begin{abstract}
+      Ton résumé ici.
+    \end{abstract}
+    \vspace{1em} % un peu d'espace
+    \noindent \textbf{Mots-clés :} mot1, mot2, mot3, mot4.
+    \vspace{2em} % un peu d'espace avant le contenu double colonne
+  \end{@twocolumnfalse}
+]
+
+% contenu principal de l'article en double colonne
+%\input{articles/article1.tex}
+% Corps de l'article ici, en 2 colonnes automatiquement.
+% Figures incluses normalement avec \begin{figure}...\end{figure}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{1_Chapitre_1_Etat_Art/Figures/mafigure.pdf/png/jpeg/...}
+\caption{Légende ici}
+\end{figure}
+
+% Bibliographie spécifique à l'article avec biblatex localement
+{
+\footnotesize % éventuellement réduire un peu la taille de la biblio locale sinon \small
+\printbibliography[heading=subbibliography,keyword=article1] % nécessité de taguer les articles avec un keyword correspondant dans Zotero
+}
+
+% Fin de la mise en page locale
+\onecolumn % retour à une colonne
+\restoregeometry % restauration marges initiales
+\pagestyle{minimaliste} % retour à ton style initial (que tu as défini)
+\clearpage % force une page propre après l'article

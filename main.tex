@@ -26,8 +26,8 @@ twoside
 
     \frontmatter
 
-    \include{0_Liminaires/Abstracts}
     \pagestyle{plain}
+    \include{0_Liminaires/Abstracts}
     \include{0_Liminaires/citations_remerciements}
     
     \cleardoublepage                     % forcer page de droite suivante
@@ -40,13 +40,14 @@ twoside
 \restoregeometry}
 
 \mainmatter % ATTENTION : note nationale - pagination commencer - page titre - continue - englober annexes, illustrations, tableaux...
-%\pagestyle{ruled}
 \pagestyle{minimaliste}
 \include{0_Liminaires/introduction}
-\include{1_Chapitre_1_Etat_Art/chapitre_1_etat_art}
-%\include{2_Chapitre_2_Mat_et_Met/chapitre_2_materiel_et_methode}
-% ...
-\include{0_Liminaires/conclusion}
+\include{1_Chapitre_1_Etat_Art/Chapitre_1_etat_art}
+\include{2_Chapitre_2_Analyse_vins_RMN/Chapitre_2_methode}
+\include{3_Chapitre_3_Tracabilite_vins/Chapitre_3_application}
+\include{4_Chapitre_4_Fusion_donnees/Chapitre_4_Fusion_donnees}
+%\include{5_Chapitre_5_Discussions_perspectives/Chapitre_5_Discussions_conclusion} % Ou faire comme l'intro...
+\include{0_Liminaires/conclusions}
 
 {\newgeometry{top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm,includehead=false}
     %\backmatter % Commenté car fou la merde dans les annexes
@@ -115,5 +116,3 @@ Le mémoire contient obligatoirement un résumé rédigé en français et en ang
 La langue de soutenance est normalement le français, sauf pour les étudiants non francophones, ou ceux dont le travail s'est développé dans un cadre international, auquel cas l'usage de la langue anglaise est toléré.
 La discussion pourra se dérouler en anglais si des membres du jury le souhaitent.
 Les rapporteurs et le président du jury devront rédiger leurs rapports en suivant ce qui est prévu dans la convention de thèse si elle existe, en français ou en anglais.
-
- 
